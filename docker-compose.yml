@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - DATABASE_URL=mongodb://mongodb:27017/
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    ports:
+      - "27017"
+    volumes:
+      - data:/mongodb
+
+
+volumes:
+  data:
